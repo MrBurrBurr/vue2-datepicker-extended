@@ -1,4 +1,4 @@
-import DatePicker from 'vue2-datepicker-keyup';
+import DatePicker from 'vue2-datepicker-extended';
 import arSA from 'date-format-parse/lib/locale/ar-sa';
 
 const lang = {
