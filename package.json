@@ -20,12 +20,9 @@
     "build": "npm run test && npm run clean && npm run build:index && npm run build:css && npm run build:locale",
     "clean": "rimraf scss locale index.*",
     "lint": "eslint src/**/*.{js,vue}",
-    "deploy:build": "cross-env NODE_ENV=production parcel build ./example/index.html --public-url ./ --out-dir _site --no-source-maps --no-minify",
-    "deploy": "bash build/gh-pages-deploy.sh",
     "format": "prettier --write src/**/*",
     "test": "npm run lint && jest",
     "cov": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "release": "bash build/git.sh && bash build/release.sh"
   },
   "repository": {
@@ -43,7 +40,7 @@
   "bugs": {
     "url": "https://github.com/mengxiong10/vue2-datepicker/issues"
   },
-  "homepage": "https://github.com/mengxiong10/vue2-datepicker#readme",
+  "homepage": "https://github.com/MrBurrBurr/vue2-datepicker-extended#readme",
   "peerDependencies": {
     "vue": "^2.5.0"
   },
