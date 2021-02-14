@@ -201,7 +201,8 @@
       color: $calendar-active-color;
       background-color: $calendar-active-background-color;
     }
-    &.in-range {
+    &.in-range,
+    &.hover-in-range {
       color: $calendar-in-range-color;
       background-color: $calendar-in-range-background-color;
     }
@@ -269,6 +270,7 @@
   }
   .cell.not-current-month {
     color: #ccc;
+    background: none; // cover the in-range style
   }
 }
 

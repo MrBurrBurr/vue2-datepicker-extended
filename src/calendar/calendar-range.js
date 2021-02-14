@@ -4,6 +4,12 @@ import { getValidDate, isValidDate, isValidRangeDate, startOfMonth } from '../ut
 export default {
   name: 'CalendarRange',
   components: { CalendarPanel },
+  provide() {
+    return {
+      onDateMouseEnter: this.onDateMouseEnter,
+      onDateMouseLeave: this.onDateMouseLeave,
+    };
+  },
   inject: {
     prefixClass: {
       default: 'mx',
@@ -16,6 +22,7 @@ export default {
     return {
       innerValue: [],
       calendars: [],
+      hoveredValue: null,
     };
   },
   computed: {
@@ -65,6 +72,12 @@ export default {
         this.innerValue = [date, new Date(NaN)];
       }
     },
+    onDateMouseEnter(cell) {
+      this.hoveredValue = cell;
+    },
+    onDateMouseLeave() {
+      this.hoveredValue = null;
+    },
     emitDate(dates, type) {
       this.$emit('select', dates, type);
     },
@@ -100,14 +113,28 @@ export default {
     },
     getRangeClasses(cellDate, currentDates, classnames) {
       const classes = [].concat(this.getClasses(cellDate, currentDates, classnames));
-      if (
-        !/disabled|active|not-current-month/.test(classnames) &&
-        currentDates.length === 2 &&
-        cellDate.getTime() > currentDates[0].getTime() &&
-        cellDate.getTime() < currentDates[1].getTime()
-      ) {
-        classes.push('in-range');
+
+      if (/disabled|active/.test(classnames)) return classes;
+
+      const inRange = (data, range, fn = v => v.getTime()) => {
+        const value = fn(data);
+        let [min, max] = range.map(fn);
+        if (min > max) {
+          [min, max] = [max, min];
+        }
+        return value > min && value < max;
+      };
+      if (currentDates.length === 2 && inRange(cellDate, currentDates)) {
+        return classes.concat('in-range');
       }
+      if (
+        currentDates.length === 1 &&
+        this.hoveredValue &&
+        inRange(cellDate, [currentDates[0], this.hoveredValue])
+      ) {
+        return classes.concat('hover-in-range');
+      }
+
       return classes;
     },
   },
