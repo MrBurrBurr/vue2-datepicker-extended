@@ -29,12 +29,6 @@
     "type": "git",
     "url": "git+https://github.com/MrBurrBurr/vue2-datepicker-extended.git"
   },
-  "keywords": [
-    "vue",
-    "calendar",
-    "datepicker",
-    "datetimepicker"
-  ],
   "author": "xiemengxiong",
   "license": "MIT",
   "bugs": {
