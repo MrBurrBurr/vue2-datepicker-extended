@@ -61,7 +61,7 @@
     "conventional-changelog-cli": "^2.0.25",
     "core-js": "^3.3.5",
     "coveralls": "^3.0.7",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.16.1",
     "eslint": "^6.2.2",
     "eslint-config-airbnb-base": "^14.0.0",
